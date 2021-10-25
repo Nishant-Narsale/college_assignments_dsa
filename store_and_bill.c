@@ -6,41 +6,54 @@ struct STORE
         int code;
         char name[10];
         int price;
-    }products[4];
+        int quantity;
+    }products[10],productsToBuy[10];
 
-int DisplayMenu(struct STORE * product){
-    printf("\n\nPRODUCT : \n");
-    printf("%d\n",product->code);
-    printf("%s\n",product->name);
-    printf("%d\n",product->price);
+int displayProduct(struct STORE * product){
+    printf("\t%d\t%s\t%d\n",product->code,product->name,product->price);
 }
 
 int main(){
-    int total_price = 0;
+    int total_price = 0,i=1,j=1,ctr=0,newctr=0;
 
-    products[0].code = 1;
-    strcpy(products[0].name,"Laptop");
-    products[0].price = 40000;
-
-    products[1].code = 2;
-    strcpy(products[1].name,"Mobile");
-    products[1].price = 10000;
-
-    products[2].code = 3;
-    strcpy(products[2].name,"IOT");
-    products[2].price = 6000;
-    
-    products[3].code = 4;
-    strcpy(products[3].name,"Another");
-    products[3].price = 40000;
-
-    for (int i = 0; i < 4; i++)
+    while (i==1)
     {
-        DisplayMenu(&products[i]);
+        printf("***Enter a new product***\n");
+        printf("Enter Product code :");
+        scanf("%d",&products[ctr].code);
+        printf("Enter Product name :");
+        scanf("%s",products[ctr].name);
+        printf("Enter product price :");
+        scanf("%d",&products[ctr].price);
+        ctr++;
+        printf("Want to add a new product (yes-1) :");
+        scanf("%d",&i);
     }
-    for (int j = 0; j < 4; j++)
+    
+    printf("\t***Your inventory***\n\n");
+    printf("\tCode\tName\tPrice\n");
+    for (int i = 0; i < ctr; i++)
     {
-        total_price += products[j].price;
+        displayProduct(&products[i]);
+    }
+
+    while (j==1)
+    {
+        printf("Enter product code to buy that product :");
+        scanf("%d",&productsToBuy[newctr].code);
+        printf("Enter the quantity :");
+        scanf("%d",&productsToBuy[newctr].quantity);
+
+        newctr++;
+        printf("Want to buy another product (yes=1) :");
+        scanf("%d",&j);
+    }
+    
+
+
+    for (int j = 0; j < newctr; j++)
+    {
+        total_price += productsToBuy[j].price;
     }
     
     printf("\n\nYou need to pay : %d\n\n",total_price);

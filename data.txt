@@ -1,0 +1,5 @@
+1 nish 300
+2 shry 200
+3 hey 300
+6 heythe 200
+5 hii 400
